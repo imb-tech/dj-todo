@@ -62,6 +62,7 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 INSTALLED_APPS = DJANGO_APPS + CUSTOM_APPS + THIRD_PARTY_APPS
@@ -167,4 +168,19 @@ CACHES = {
         "KEY_PREFIX": "tourism_back",
     }
 }
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Tourism',
+    'DESCRIPTION': 'Automation',
+    'VERSION': '0.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    "COMPONENT_SPLIT_REQUEST": True,
+    "COMPONENT_SPLIT_RESPONSE": True,
+    "COMPONENT_SPLIT_PATH": True,
+    "COMPONENT_NO_REQUEST_RESPONSE_PATH": False,
+    "DISABLE_ERRORS_AND_WARNINGS": True,
+    'SCHEMA_PATH_PREFIX': r'/api/v[0-9]',
+}
+
 
