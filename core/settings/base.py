@@ -13,8 +13,6 @@ from pathlib import Path
 
 import environ
 
-from core.jazzmin_conf import *  # noqa
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -35,7 +33,7 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 DJANGO_APPS = [
-    "jazzmin",
+    'unfold'
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -158,20 +156,15 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# CACHES
+
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": f"{env.str('REDIS_URL', 'redis://localhost:6379/0')}",
-        "KEY_PREFIX": "boilerplate",  # todo: you must change this with your project name or something else
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+        "KEY_PREFIX": "tourism_back",
     }
 }
 
-# CELERY CONFIGURATION
-CELERY_BROKER_URL = env.str("CELERY_BROKER_URL", "redis://localhost:6379")
-CELERY_RESULT_BACKEND = env.str("CELERY_BROKER_URL", "redis://localhost:6379")
-
-CELERY_TIMEZONE = "Asia/Tashkent"
-
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
