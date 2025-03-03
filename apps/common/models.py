@@ -33,6 +33,14 @@ class Employee(BaseModel):
         max_length=100,
         choices=Positions.choices
     )
+    age = models.PositiveSmallIntegerField(
+        verbose_name='Age',
+    )
+
+    phone = models.CharField(
+        max_length=20,
+        verbose_name='Phone',
+    )
 
     class Meta:
         verbose_name = 'Employee'
