@@ -3,7 +3,7 @@ from django.urls import path, include
 urlpatterns = [
 
     path(
-        'common',
+        'common/',
         include('apps.common.urls'),
         name='common'
     )
